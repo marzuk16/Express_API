@@ -6,7 +6,7 @@ const productSchema = new Schema({
     name: {
         type: String,
         trim: true,
-        maxlength: 30,
+        maxlength: 100,
         required: true
     },
     price: {
@@ -25,7 +25,7 @@ const productSchema = new Schema({
     brand: {
         type: String,
         trim: true,
-        maxlength: 30,
+        maxlength: 50,
         required: true
     },
     expiryDate: Date

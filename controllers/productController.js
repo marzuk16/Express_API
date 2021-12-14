@@ -10,14 +10,14 @@ exports.getProductById = async (req, res, next) => {
         let product = await Product.findOne({
             status: true,
             _id: productId
-        });
+        }).select({"status": 0, "createdAt": 0, "updatedAt": 0, "__v": 0});
 
         let message = "Product found.";
 
         // console.log("producvt: ", product);
         if(!product){
 
-            message = "Can't found product."
+            message = "Product not found."
         }
 
         return res.status(200).json({
@@ -37,6 +37,7 @@ exports.getProductById = async (req, res, next) => {
 
 exports.productPostController = async (req, res, next) => { 
 
+    console.log("req.body: ", req.body);
     let {
         name,
         price,
@@ -90,7 +91,7 @@ exports.productEditController = async (req, res, next) => {
     try {
         
         let product = await Product.findOne({
-            status: true,
+            status: null,
             _id: productId
         });
 
@@ -98,7 +99,7 @@ exports.productEditController = async (req, res, next) => {
 
             return res.status(404).json({
             
-                message: "Can't find product"
+                message: "Product not found."
             });
         }
 

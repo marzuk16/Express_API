@@ -4,7 +4,8 @@ exports.homeGetController = async (req, res, next) => {
 
     try {
         console.log("home controller calling");
-        let products = await Product.find();
+        let products = await Product.find()
+            /* .select({"status": 0, "createdAt": 0, "updatedAt": 0, "__v": 0}) */;
         console.log("products: ", products);
 
         return res.status(200).json({
